@@ -1,0 +1,28 @@
+body{
+    background-color:gainsboro;
+}
+.box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+.FirstPerson,.secoundPerson {
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.nartoo-health, .saskii-health{
+    display: block;
+    background-color: green;
+    height: 20px;
+    margin: 2% 1%;
+}
+
+.firstPerson-img,.secoundPerson-img{
+    width: 50%;
+}
+
+.firstPerson-controller, .secoundPerson-controller{
+    margin-bottom: 2%;
+}
