@@ -1,6 +1,7 @@
 body{
     background-color:gainsboro;
 }
+
 .box{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -13,16 +14,17 @@ body{
 }
 
 .nartoo-health, .saskii-health{
-    display: block;
+    display: inline-block;
+    margin: 1% ;
     background-color: green;
     height: 20px;
-    margin: 2% 1%;
+    
 }
 
 .firstPerson-img,.secoundPerson-img{
     width: 50%;
 }
 
-.firstPerson-controller, .secoundPerson-controller{
+.narto-controller, .saskii-controller{
     margin-bottom: 2%;
 }
