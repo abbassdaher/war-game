@@ -14,10 +14,12 @@ body{
 }
 
 .nartoo-health, .saskii-health{
-    display: inline-block;
-    margin: 1% ;
+    display: block;
+    margin: 1% 0;
     background-color: green;
+    color: gray;
     height: 20px;
+    width: 100%;
     
 }
 
