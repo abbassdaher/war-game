@@ -10,14 +10,18 @@ function chracter(name, strength, health) {
     this.name = name
     this.strength = strength
     this.health = health
-
-    this.attackBTN = document.querySelector(`.${this.name}-attack-btn`)
-    this.healthBTN = document.querySelector(`.${this.name}-health-btn`)
-    this.progress = document.querySelector(`.${this.name}-health`)
-    this.controller = document.querySelector(`.${this.name}-controller`)
-    this.result = document.querySelector(`.${this.name}-result`)
+    this.elements = new uiElements(this.name)
+    
 
 
+}
+
+function uiElements(name){
+    this.attackBTN = document.querySelector(`.${name}-attack-btn`)
+    this.healthBTN = document.querySelector(`.${name}-health-btn`)
+    this.progress = document.querySelector(`.${name}-health`)
+    this.controller = document.querySelector(`.${name}-controller`)
+    this.result = document.querySelector(`.${name}-result`)
 }
 
 /* The code `chracter.prototype.attack` is defining a method called `attack` on the prototype of the
@@ -25,19 +29,20 @@ function chracter(name, strength, health) {
 method. */
 chracter.prototype.attack = function (opponent) {
     if (opponent.health == 0 || this.health == 0) {
-        opponent.controller.style.visibility = "hidden";
-        /* The code `opponent.result.innerHTML  ="Game Over"` sets the innerHTML of the `result`
-        element of the opponent character to "Game Over". This is used to display the game over
-        message for the opponent character. */
-        opponent.result.innerHTML  ="Game Over"
-        this.result.innerHTML = "Congratulation"
-        this.result.style.color = "green"
-        opponent.result.style.color = "red"
-        this.controller.style.visibility = "hidden";
 
+        opponent.elements.controller.style.visibility = "hidden";
+        this.elements.controller.style.visibility = "hidden";
+
+        /*This is used to display the game over
+        message for the opponent character. */
+        opponent.elements.result.innerHTML = "Game Over"
+        this.elements.result.innerHTML = "Congratulation"
+        // style for results
+        this.elements.result.style.color = "green"
+        opponent.elements.result.style.color = "red"
     } else {
         opponent.health -= this.strength
-        opponent.progress.style.width = `${opponent.health}%`
+        opponent.elements.progress.style.width = `${opponent.health}%`
         console.log(`${opponent.health}%`);
     }
 
@@ -51,7 +56,7 @@ chracter.prototype.makeHealthy = function () {
         this.health += this.strength
         if (this.health > 100)
             this.health = 100
-        this.progress.style.width = `${this.health}%`
+        this.elements.progress.style.width = `${this.health}%`
         console.log(`${this.health}%`);
     }
 
@@ -60,7 +65,7 @@ CharacterData.prototype.status = function () {
     console.log("Name: " + this.name);
     console.log("Strength: " + this.strength);
     console.log("health: " + this.health);
-    console.log("attackBTN: " + this.attackBTN)
+    console.log("attackBTN: " + this.elements.attackBTN)
 }
 
 let nartoo = new chracter('nartoo', 10, 100)
@@ -68,8 +73,8 @@ let saskii = new chracter('saskii', 5, 100)
 
 // saskii.status()
 console.log(nartoo)
-nartoo.attackBTN.addEventListener('click', function () { nartoo.attack(saskii); })
-saskii.attackBTN.addEventListener('click', function () { saskii.attack(nartoo); })
+nartoo.elements.attackBTN.addEventListener('click', function () { nartoo.attack(saskii); })
+saskii.elements.attackBTN.addEventListener('click', function () { saskii.attack(nartoo); })
 
-saskii.healthBTN.addEventListener('click', function () { saskii.makeHealthy() })
-nartoo.healthBTN.addEventListener('click', function () { nartoo.makeHealthy() })
+saskii.elements.healthBTN.addEventListener('click', function () { saskii.makeHealthy() })
+nartoo.elements.healthBTN.addEventListener('click', function () { nartoo.makeHealthy() })
