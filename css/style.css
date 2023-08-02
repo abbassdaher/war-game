@@ -30,3 +30,6 @@ body{
 .narto-controller, .saskii-controller{
     margin-bottom: 2%;
 }
+.result{
+    color: red;
+}
